@@ -109,22 +109,26 @@ Remove this editing guide before submission. -->
 
 #### 4.1.1 Description and Priority
 
-**Description:** [Describe F1 and the need it addresses.]  
-**Priority and rationale:** [State the priority and explain why.]
+Residents use FixMyRoom to report faults in their rooms or in shared areas. Each new request has a reference the resident can use to find it again. If another resident has already reported the same shared-area fault, a resident can follow that request using its existing reference.
+
+**Priority — High.** CampusLiving currently loses reports and receives several reports about the same fault. Caretakers need a saved request with a clear location before they can assign a repair.
 
 #### 4.1.2 Stimulus/Response Sequences
 
 | User action or event | Expected system response |
 | --- | --- |
-| [Action or event] | [Observable response] |
+| A resident enters the building, room or shared-area location, and fault description, then submits the report. | FixMyRoom saves the request and its submission time, then shows the resident its reference and initial status, **Received**. |
+| After an application restart, the resident opens the confirmed request using its reference. | FixMyRoom displays the saved location and fault description under the original reference. |
+| A second resident selects the same shared area while reporting a fault. | FixMyRoom shows open requests for that shared area so the resident can identify whether the fault has already been reported. |
+| The second resident selects the matching request and chooses **Follow**. | FixMyRoom adds the resident as a follower of the existing request. The reference and the number of maintenance requests stay the same. |
 
 #### 4.1.3 Requirements
 
 | ID | Type | Requirement statement | Case source | Prototype check |
 | --- | --- | --- | --- | --- |
-| R01 | | | | |
-| R02 | | | | |
-| R03 | | | | |
+| R01 | FR | When a resident submits a building, a room or shared-area location, and a fault description, FixMyRoom shall create one request with those details and its submission time, and confirm it with a unique reference and the status **Received**. | FixMyRoom case, p. 1, *Problem*, and p. 2, BG1 and BG4. The reference and initial status are team decisions. | Submit a private-room fault and a separate shared-area fault. Verify that each submission produces one request with the entered details, a submission time, a distinct reference, and the status **Received**. |
+| R02 | NFR | After FixMyRoom confirms a submission, the request shall remain retrievable by its original reference after the application restarts, with its submitted details and submission time preserved. | FixMyRoom case, p. 2, BG1. Surviving an application restart is the team's reliability criterion. | Record a confirmed request's reference, details, and submission time. Restart the application and retrieve the request as the same resident. Compare the saved values with the originals. |
+| R03 | FR | When a resident selects an open request for the same shared-area fault and chooses to follow it, FixMyRoom shall link that resident to the selected request without creating a second maintenance request. | FixMyRoom case, p. 1, *Problem*, and p. 3, *First Questions to Think About*, question 4. Following an existing request is the team's chosen response to duplicate reports. | Have one resident report a shared-kitchen fault. As a second resident, select that fault and follow it. Verify that both residents can access the same reference and that the total request count remains unchanged. |
 
 ### 4.2 F2 — Work Prioritization and Scheduling
 
